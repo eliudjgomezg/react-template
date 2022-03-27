@@ -1,13 +1,30 @@
 import React from 'react'
-import ReactDOM from 'react-dom'
 
-import './index.css'
-import App from './App'
+import { LoaderContextProvider } from 'context/LoaderContext'
+import { SnackbarProvider } from 'notistack'
+import ReactDOM from 'react-dom'
+import { QueryClient, QueryClientProvider } from 'react-query'
+import { BrowserRouter } from 'react-router-dom'
+
+import AppRouter from 'appRouter/AppRouter'
+
 import reportWebVitals from './reportWebVitals'
+
+import 'assets/styles/index.scss'
+
+const queryClient = new QueryClient()
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <BrowserRouter>
+      <QueryClientProvider client={queryClient}>
+        <LoaderContextProvider>
+          <SnackbarProvider maxSnack={3}>
+            <AppRouter />
+          </SnackbarProvider>
+        </LoaderContextProvider>
+      </QueryClientProvider>
+    </BrowserRouter>
   </React.StrictMode>,
   document.getElementById('root')
 )

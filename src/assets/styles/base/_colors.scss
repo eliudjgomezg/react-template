@@ -1,0 +1,25 @@
+:root {
+  --transparent: transparent;
+  --black: #000000;
+  --white: #ffffff;
+
+  --shadow-gray--006: 0px 4px 20px rgba(71, 24, 108, 0.06);
+  --shadowgray--025: 0px 5px 10px rgba(150, 150, 150, 0.25);
+  --shadow-gray--01: 0px 1.99291px 13.9504px rgba(0, 0, 0, 0.1);
+}
+
+//Shadows
+@mixin shadow($color) {
+  box-shadow: $color !important;
+}
+.shadow- {
+  &gray-006 {
+    @include shadow(var(--shadow-gray--006));
+  }
+  &gray-025 {
+    @include shadow(var(--shadow-gray--025));
+  }
+  &gray-01 {
+    @include shadow(var(--shadow-gray--01));
+  }
+}

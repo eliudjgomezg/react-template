@@ -17,5 +17,13 @@
     "noEmit": true,
     "jsx": "react-jsx"
   },
-  "include": ["src", "**/*.ts", "**/*.tsx", ".eslintrc.js", "postcss.config.js", "tailwind.config.js"]
+  "include": [
+    "src", 
+    "**/*.ts", 
+    "**/*.tsx", 
+    ".eslintrc.js", 
+    "postcss.config.js", 
+    "tailwind.config.js",
+    "craco.config.js"
+  ]
 }

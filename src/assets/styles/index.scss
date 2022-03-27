@@ -1,0 +1,11 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import './abstrac/mixin.scss';
+
+@import './base/colors.scss';
+@import './base/html-core.scss';
+
+@import './utils/_libraries.scss';
+@import './utils/utils.scss';

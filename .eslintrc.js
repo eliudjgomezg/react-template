@@ -19,7 +19,8 @@ module.exports = {
     },
     'import/resolver': {
       node: {
-        extensions: ['.js', '.jsx', '.ts', '.tsx']
+        extensions: ['.js', '.jsx', '.ts', '.tsx'],
+        moduleDirectory: ['node_modules', 'src/'],
       }
     }
   },
@@ -54,7 +55,17 @@ module.exports = {
             position: 'before'
           },
           {
-            pattern: '{assets/**}',
+            pattern: '{hooks/**,context/**,models/**,utils/**,react-hook-form,react-router-dom,react-query,notistack,react-dom}',
+            group: 'internal',
+            position: 'after'
+          },
+          {
+            pattern: '{pages/**,components/**,commons/**,layouts/**,appRouter/**}',
+            group: 'internal',
+            position: 'after'
+          },
+          {
+            pattern: '{@mui/**,assets/**}',
             group: 'internal',
             position: 'after'
           }
