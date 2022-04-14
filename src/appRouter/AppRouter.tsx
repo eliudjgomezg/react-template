@@ -6,7 +6,7 @@ import { routes } from 'utils/routes'
 import DashboardLayout from 'layouts/DashboardLayout'
 import Home from 'pages/Home'
 
-import UiKitLayout from 'assets/Uikit/UiPage/UiPageLayout'
+import UiKitLayout from 'assets/Uikit/UiKitPage/UiPageLayout'
 
 const AppRouter: FC = () => {
   return (
@@ -14,6 +14,7 @@ const AppRouter: FC = () => {
       <Route path={routes.uikit} element={<UiKitLayout />} />
       <Route path={routes.dashboard} element={<DashboardLayout />} />
       <Route path={routes.home} element={<Home />} />
+      <Route path='/*' element={<p>Page Not Fount!!!!!!!</p>} />
     </Routes>
   )
 }

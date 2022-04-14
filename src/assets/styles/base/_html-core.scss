@@ -7,11 +7,11 @@
   margin: 0;
   padding: 0;
   font-family: var(--primary-font);
-  scrollbar-color: var(--gray-400) var(--gray-100);
+  scrollbar-color: var(--black) var(--gray-01);
   scrollbar-width: thin;
 
   & ::-webkit-scrollbar {
-    background-color: var(--gray-100);
+    background-color: var(--gray-01);
     border-radius: 10px;
     width: 11px;
   }
@@ -21,7 +21,7 @@
   }
   *::-webkit-scrollbar-thumb {
     background-clip: content-box;
-    background-color: var(--gray-400);
+    background-color: var(--black);
     border-radius: 10px;
     border: 3px solid transparent;
   }
