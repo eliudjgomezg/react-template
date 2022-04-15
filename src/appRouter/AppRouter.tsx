@@ -1,12 +1,12 @@
 import { FC } from 'react'
 
+import UiKitLayout from 'Uikit/UiKitPage/UiPageLayout'
+
 import { Routes, Route } from 'react-router-dom'
 import { routes } from 'utils/routes'
 
 import DashboardLayout from 'layouts/DashboardLayout'
 import Home from 'pages/Home'
-
-import UiKitLayout from 'assets/Uikit/UiKitPage/UiPageLayout'
 
 const AppRouter: FC = () => {
   return (
