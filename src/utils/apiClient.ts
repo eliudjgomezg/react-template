@@ -1,8 +1,6 @@
 import autoBind from 'auto-bind'
 
-import { TCustomHeader, TFetchParam, TMethod } from 'models/IRequest'
-
-import endpoints from './endpoints'
+import { IFetchParams, IPost, IPut, IRequestParams } from 'models/IRequest'
 
 const defaultHeader = () => {
   const token = window.localStorage.getItem('user_token') ?? '""'
@@ -17,7 +15,7 @@ class APIClient {
     autoBind(this)
   }
 
-  async fetch<T, K>(params: TFetchParam & { body?: Partial<K> | BodyInit }): Promise<T> {
+  async fetch<T, K>(params: IFetchParams<K>): Promise<T> {
     const { endpoint, method = 'GET', customHeader = undefined } = params
     let { body = undefined } = params
     const headers = customHeader ? { ...defaultHeader(), ...customHeader } : defaultHeader()
@@ -37,19 +35,18 @@ class APIClient {
   }
 
   //CRUD request methods
-  getAll<T>(endpoint: string, customHeader: Record<string, string> | undefined = undefined): Promise<{ response: T[] }> {
-    return this.fetch({ endpoint, customHeader })
+  GET<P>({ endpoint, customHeader }: IRequestParams): Promise<P> {
+    return this.fetch<P, null>({ endpoint, customHeader: customHeader ?? undefined })
   }
-  getOne<T>(endpoint: string, customHeader: Record<string, string> | undefined = undefined): Promise<{ response: T }> {
-    return this.fetch({ endpoint, customHeader })
+  POST<P, B>({ endpoint, body, customHeader }: IPost<B> & IRequestParams): Promise<P> {
+    return this.fetch<P, B>({ endpoint, method: 'POST', body, customHeader })
   }
-  mutation<T, K>(endpoint: string, method: TMethod, body?: K, customHeader: TCustomHeader = undefined): Promise<T> {
-    return this.fetch({ endpoint, method, body, customHeader })
+  PUT<P, B>({ endpoint, body, customHeader }: Omit<IPut<B>, 'id'> & IRequestParams): Promise<P> {
+    return this.fetch<P, B>({ endpoint, method: 'PUT', body, customHeader })
+  }
+  DELETE<P>({ endpoint, customHeader }: IRequestParams): Promise<P> {
+    return this.fetch<P, null>({ endpoint, method: 'DELETE', customHeader })
   }
 }
 
 export const apiClient = new APIClient(process.env.NEXT_PUBLIC_BACKEND_SERVER_URL ?? '')
-
-export const setEndpoint = (endpoint: keyof typeof endpoints, id?: string, queryParam?: string) => {
-  return `${endpoints[endpoint](id ?? '')}${queryParam ?? ''}`
-}
